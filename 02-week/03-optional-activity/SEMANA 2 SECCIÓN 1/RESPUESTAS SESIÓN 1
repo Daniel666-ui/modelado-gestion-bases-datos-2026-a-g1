@@ -1,1 +1,121 @@
+1. ¿Qué pasaría si no definimos correctamente las claves de cada entidad desde el inicio?
 
+Si las claves (primarias y foráneas) no se definen correctamente desde el principio, se generan problemas estructurales graves en el modelo de datos:
+
+**a) Pérdida de integridad referencial**
+Sin claves primarias bien definidas:
+
+* No se puede garantizar unicidad de registros.
+* Aparecen duplicados.
+* Las relaciones entre entidades se vuelven ambiguas.
+
+Sin claves foráneas bien diseñadas:
+
+* Se generan registros huérfanos.
+* Se rompe la consistencia entre tablas.
+
+**b) Rediseño costoso posterior**
+Modificar claves una vez que el sistema está en producción implica:
+
+* Migraciones complejas.
+* Reestructuración de relaciones.
+* Riesgo de pérdida o corrupción de datos.
+
+**c) Problemas de rendimiento**
+Las claves mal definidas afectan:
+
+* Índices.
+* Planes de ejecución de consultas.
+* Escalabilidad del sistema.
+
+**d) Dificultad para normalizar correctamente**
+Las claves son el eje de la normalización. Si están mal definidas:
+
+* Se introducen dependencias funcionales incorrectas.
+* Se generan anomalías de inserción, actualización y eliminación.
+
+En resumen: una mala definición de claves compromete la integridad, mantenibilidad y escalabilidad del sistema.
+
+---
+
+### 2. ¿Qué ventajas aporta tener identificadas las entidades antes de pasar al diagrama ER formal?
+
+Identificar claramente las entidades antes de formalizar el diagrama ER aporta:
+
+**a) Claridad conceptual del dominio**
+Permite separar:
+
+* Objetos del mundo real (Alumno, Curso, Profesor).
+* Eventos (Inscripción, Evaluación).
+* Catálogos (Carrera, Departamento).
+
+Esto reduce ambigüedades semánticas.
+
+**b) Mejor definición de relaciones**
+Si las entidades están claras:
+
+* Las cardinalidades se determinan con mayor precisión.
+* Se detectan relaciones muchos-a-muchos que requieren entidades asociativas.
+* Se evita mezclar atributos con entidades.
+
+**c) Reducción de redundancias**
+Permite detectar:
+
+* Entidades duplicadas con diferente nombre.
+* Atributos que deberían ser entidades independientes.
+
+**d) Transición más limpia al modelo lógico**
+Un ER bien conceptualizado facilita:
+
+* Transformación a modelo relacional.
+* Definición correcta de claves.
+* Aplicación de reglas de normalización.
+
+En síntesis: mejora la calidad del diseño conceptual y reduce errores estructurales posteriores.
+
+---
+
+### 3. ¿Qué información adicional consideras crítica en un sistema académico que aún no hemos modelado?
+
+En un sistema académico típico, además de las entidades básicas (Alumno, Profesor, Curso, Inscripción), suele ser crítica la siguiente información:
+
+**a) Gestión académica**
+
+* Historial académico (kardex).
+* Estado del alumno (activo, suspendido, egresado).
+* Prerrequisitos entre materias.
+* Planes de estudio versionados.
+* Control de periodos académicos (semestres, ciclos).
+
+**b) Evaluación**
+
+* Parciales y ponderaciones.
+* Escalas de calificación.
+* Actas oficiales.
+* Recuperaciones / extraordinarios.
+
+**c) Gestión administrativa**
+
+* Pagos y colegiaturas.
+* Becas y descuentos.
+* Adeudos.
+
+**d) Recursos académicos**
+
+* Asignación de aulas.
+* Horarios.
+* Capacidad máxima de grupo.
+
+**e) Seguridad y trazabilidad**
+
+* Usuarios y roles (alumno, docente, coordinador).
+* Auditoría de cambios.
+* Control de acceso.
+
+**f) Reglas de negocio**
+
+* Límite de créditos por semestre.
+* Condiciones de reinscripción.
+* Políticas de baja temporal o definitiva.
+
+Muchas veces estos elementos no se modelan inicialmente y luego generan extensiones improvisadas que afectan la coherencia del diseño.
